@@ -37,13 +37,6 @@ Commit:
 
 ## In Progress
 
-### TASK-4: Sales trend chart
-Add a Plotly line chart of sales over time (FR-2).
-- [ ] Line chart shows sales aggregated by month (or day) across the full 12 months
-- [ ] Axes are labeled and hovering shows exact values
-
-Commit:
-
 ## Done
 
 ### TASK-1: Environment setup and project initialization
@@ -71,4 +64,12 @@ Display Total Sales and Total Orders prominently at the top of the dashboard (FR
 - [x] KPIs are side by side and clearly labeled
 
 Commit: d335af8
+Notes: clean
+
+### TASK-4: Sales trend chart
+Add a Plotly line chart of sales over time (FR-2).
+- [x] Line chart shows sales aggregated by month (or day) across the full 12 months
+- [x] Axes are labeled and hovering shows exact values
+
+Commit: f3cdf1b
 Notes: clean
