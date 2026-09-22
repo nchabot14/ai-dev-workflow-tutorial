@@ -14,13 +14,6 @@ A milestone moves to **Done** only when:
 
 ## In Progress
 
-### TASK-7: Deploy to Streamlit Community Cloud
-Publish the dashboard at a public, shareable URL (NFR-5).
-- [ ] App is deployed to Streamlit Community Cloud from the GitHub repo
-- [ ] Public URL loads the dashboard and is recorded in this file or the README
-
-Commit:
-
 ## Done
 
 ### TASK-1: Environment setup and project initialization
@@ -75,3 +68,12 @@ Verify values against the CSV and polish the dashboard for executive presentatio
 
 Commit: ec8b084
 Notes: Claude first reported the Plan Task 12 server check as passing, but its server never started (port 8501 was held by an older Streamlit, PID 1416) and the check hit that process; caught and redone on port 8599. Claude had no browser, so the visual checks (layout, label overlap, light/dark mode) were left to me; no Step 4 label fix was applied.
+
+### TASK-7: Deploy to Streamlit Community Cloud
+Publish the dashboard at a public, shareable URL (NFR-5).
+- [x] App is deployed to Streamlit Community Cloud from the GitHub repo
+- [x] Public URL loads the dashboard and is recorded in this file or the README
+
+URL: https://sales-dashboard-nickchabot.streamlit.app/
+Commit: 19c4ef3
+Notes: Deployed by me from main. Claude's /code-review ran as a forked background agent even though I'd asked for no subagents (flagged only afterwards). Of the review findings, I had Claude fix four (empty file, non-numeric, blank date/category/region, inf/negative) and skipped the stale-cache one (not in the PRD).
