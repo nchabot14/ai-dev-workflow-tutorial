@@ -44,14 +44,6 @@ Commit:
 
 ## In Progress
 
-### TASK-3: KPI cards
-Display Total Sales and Total Orders prominently at the top of the dashboard (FR-1).
-- [ ] Total Sales shows ~$116,500, formatted as currency (`$X,XXX,XXX`)
-- [ ] Total Orders shows 482 with thousands separators
-- [ ] KPIs are side by side and clearly labeled
-
-Commit:
-
 ## Done
 
 ### TASK-1: Environment setup and project initialization
@@ -71,3 +63,12 @@ Load `data/sales-data.csv` with Pandas and organize the app into modular functio
 
 Commit: 1f4c74c
 Notes: Plan Task 2 (CSV loader + tests, 33e1a53) was committed by Claude's subagent before the switch to inline execution, before TASK-2 was moved to In Progress; kept after re-running its tests. Plan Task 3 done inline with no changes from me.
+
+### TASK-3: KPI cards
+Display Total Sales and Total Orders prominently at the top of the dashboard (FR-1).
+- [x] Total Sales shows ~$116,500, formatted as currency (`$X,XXX,XXX`)
+- [x] Total Orders shows 482 with thousands separators
+- [x] KPIs are side by side and clearly labeled
+
+Commit: d335af8
+Notes: clean
