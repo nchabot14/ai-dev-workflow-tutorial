@@ -79,6 +79,32 @@ def test_load_raises_when_amount_is_missing(tmp_path):
         sales_data.load_sales_data(bad_csv)
 
 
+# Rows with a blank category, region or date would count toward Total Sales
+# but be dropped from the charts, so the numbers on the page wouldn't add up.
+@pytest.mark.parametrize(
+    "row, column",
+    [
+        ("2024-01-01,A1,Cable,,North,1,12.99,12.99", "category"),
+        ("2024-01-01,A1,Cable,Accessories,,1,12.99,12.99", "region"),
+        (",A1,Cable,Accessories,North,1,12.99,12.99", "date"),
+        ("not-a-date,A1,Cable,Accessories,North,1,12.99,12.99", "date"),
+    ],
+)
+def test_load_raises_when_value_is_blank_or_unreadable(tmp_path, row, column):
+    bad_csv = tmp_path / "bad.csv"
+    bad_csv.write_text(HEADER + row + "\n")
+    with pytest.raises(ValueError, match=f"Column {column} "):
+        sales_data.load_sales_data(bad_csv)
+
+
+@pytest.mark.parametrize("amount", ["inf", "-inf", "-5.00"])
+def test_load_raises_when_amount_is_infinite_or_negative(tmp_path, amount):
+    bad_csv = tmp_path / "bad.csv"
+    bad_csv.write_text(HEADER + f"2024-01-01,A1,Cable,Accessories,North,1,12.99,{amount}\n")
+    with pytest.raises(ValueError, match="Column total_amount "):
+        sales_data.load_sales_data(bad_csv)
+
+
 # --- A tiny made-up table with totals you can check by hand ---
 #
 #   date        order_id  category   region  total_amount
