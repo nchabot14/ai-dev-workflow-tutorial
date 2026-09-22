@@ -132,3 +132,46 @@ def test_sales_by_month_tiny(tiny):
     monthly = sales_data.sales_by_month(tiny)
     assert list(monthly["month"].dt.month) == [1, 2]
     assert list(monthly["total_amount"]) == pytest.approx([60.0, 35.0])
+
+
+# --- Category and region breakdowns ---
+
+
+def test_sales_by_category_sorted_highest_first(sales):
+    by_category = sales_data.sales_by_category(sales)
+    assert list(by_category.columns) == ["category", "total_amount"]
+    assert list(by_category["category"]) == [
+        "Electronics",
+        "Wearables",
+        "Audio",
+        "Smart Home",
+        "Accessories",
+    ]
+
+
+def test_sales_by_category_adds_up_to_total(sales):
+    by_category = sales_data.sales_by_category(sales)
+    assert by_category["total_amount"].sum() == pytest.approx(116500.21)
+
+
+def test_sales_by_category_tiny(tiny):
+    by_category = sales_data.sales_by_category(tiny)
+    assert list(by_category["category"]) == ["Wearables", "Audio"]
+    assert list(by_category["total_amount"]) == pytest.approx([50.0, 45.0])
+
+
+def test_sales_by_region_sorted_highest_first(sales):
+    by_region = sales_data.sales_by_region(sales)
+    assert list(by_region.columns) == ["region", "total_amount"]
+    assert list(by_region["region"]) == ["North", "West", "East", "South"]
+
+
+def test_sales_by_region_adds_up_to_total(sales):
+    by_region = sales_data.sales_by_region(sales)
+    assert by_region["total_amount"].sum() == pytest.approx(116500.21)
+
+
+def test_sales_by_region_tiny(tiny):
+    by_region = sales_data.sales_by_region(tiny)
+    assert list(by_region["region"]) == ["South", "North"]
+    assert list(by_region["total_amount"]) == pytest.approx([85.0, 10.0])

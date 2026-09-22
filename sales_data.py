@@ -69,3 +69,22 @@ def sales_by_month(df):
     """
     monthly = df.resample("MS", on="date")["total_amount"].sum().reset_index()
     return monthly.rename(columns={"date": "month"})
+
+
+def _sales_by(df, column):
+    """Total sales for each value in `column`, highest first."""
+    return (
+        df.groupby(column, as_index=False)["total_amount"]
+        .sum()
+        .sort_values("total_amount", ascending=False, ignore_index=True)
+    )
+
+
+def sales_by_category(df):
+    """Total sales per product category, highest first."""
+    return _sales_by(df, "category")
+
+
+def sales_by_region(df):
+    """Total sales per region, highest first."""
+    return _sales_by(df, "region")
