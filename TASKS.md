@@ -12,14 +12,6 @@ A milestone moves to **Done** only when:
 
 ## To Do
 
-### TASK-2: Data loading and basic structure
-Load `data/sales-data.csv` with Pandas and organize the app into modular functions.
-- [ ] CSV loads with `date` parsed as a date and numeric columns as numbers
-- [ ] Loaded data has 482 rows, 5 categories, and 4 regions
-- [ ] Data loading is in its own function with basic structure validation
-
-Commit:
-
 ### TASK-3: KPI cards
 Display Total Sales and Total Orders prominently at the top of the dashboard (FR-1).
 - [ ] Total Sales shows ~$116,500, formatted as currency (`$X,XXX,XXX`)
@@ -59,6 +51,14 @@ Publish the dashboard at a public, shareable URL (NFR-5).
 Commit:
 
 ## In Progress
+
+### TASK-2: Data loading and basic structure
+Load `data/sales-data.csv` with Pandas and organize the app into modular functions.
+- [ ] CSV loads with `date` parsed as a date and numeric columns as numbers
+- [ ] Loaded data has 482 rows, 5 categories, and 4 regions
+- [ ] Data loading is in its own function with basic structure validation
+
+Commit:
 
 ## Done
 
