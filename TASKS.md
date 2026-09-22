@@ -12,14 +12,6 @@ A milestone moves to **Done** only when:
 
 ## To Do
 
-### TASK-6: Testing and refinement
-Verify values against the CSV and polish the dashboard for executive presentation.
-- [ ] All displayed values match calculations from the CSV
-- [ ] Dashboard runs with no errors or warnings and loads within 5 seconds
-- [ ] Layout matches the PRD's dashboard layout and looks professional
-
-Commit:
-
 ### TASK-7: Deploy to Streamlit Community Cloud
 Publish the dashboard at a public, shareable URL (NFR-5).
 - [ ] App is deployed to Streamlit Community Cloud from the GitHub repo
@@ -28,6 +20,14 @@ Publish the dashboard at a public, shareable URL (NFR-5).
 Commit:
 
 ## In Progress
+
+### TASK-6: Testing and refinement
+Verify values against the CSV and polish the dashboard for executive presentation.
+- [ ] All displayed values match calculations from the CSV
+- [ ] Dashboard runs with no errors or warnings and loads within 5 seconds
+- [ ] Layout matches the PRD's dashboard layout and looks professional
+
+Commit:
 
 ## Done
 
