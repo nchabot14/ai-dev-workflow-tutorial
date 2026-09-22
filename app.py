@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+import plotly.express as px
 import streamlit as st
 
 import sales_data
@@ -32,3 +33,16 @@ st.caption(f"Sales performance, {start:%B %Y} – {end:%B %Y}")
 sales_card, orders_card = st.columns(2)
 sales_card.metric("Total Sales", sales_data.format_currency(sales_data.total_sales(df)))
 orders_card.metric("Total Orders", sales_data.format_count(sales_data.total_orders(df)))
+
+# --- Monthly sales trend ---
+trend = px.line(
+    sales_data.sales_by_month(df),
+    x="month",
+    y="total_amount",
+    markers=True,
+    title="Monthly Sales Trend",
+    labels={"month": "Month", "total_amount": "Sales ($)"},
+)
+trend.update_traces(hovertemplate="%{x|%b %Y}: $%{y:,.2f}<extra></extra>")
+trend.update_xaxes(dtick="M1", tickformat="%b %Y")
+st.plotly_chart(trend)
