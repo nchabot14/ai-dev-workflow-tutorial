@@ -112,3 +112,23 @@ def test_format_count_small_number():
 
 def test_format_count_adds_commas():
     assert sales_data.format_count(1234) == "1,234"
+
+
+# --- Monthly trend ---
+
+
+def test_sales_by_month_has_twelve_months_in_order(sales):
+    monthly = sales_data.sales_by_month(sales)
+    assert list(monthly.columns) == ["month", "total_amount"]
+    assert list(monthly["month"].dt.month) == list(range(1, 13))
+
+
+def test_sales_by_month_adds_up_to_total(sales):
+    monthly = sales_data.sales_by_month(sales)
+    assert monthly["total_amount"].sum() == pytest.approx(116500.21)
+
+
+def test_sales_by_month_tiny(tiny):
+    monthly = sales_data.sales_by_month(tiny)
+    assert list(monthly["month"].dt.month) == [1, 2]
+    assert list(monthly["total_amount"]) == pytest.approx([60.0, 35.0])

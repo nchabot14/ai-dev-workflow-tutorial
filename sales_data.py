@@ -59,3 +59,13 @@ def format_currency(value):
 def format_count(value):
     """Whole number with thousands separators, e.g. 1234 -> "1,234"."""
     return f"{value:,}"
+
+
+def sales_by_month(df):
+    """Total sales per calendar month, oldest first.
+
+    Returns columns "month" (first day of each month) and "total_amount".
+    A month with no sales between the first and last month appears with 0.
+    """
+    monthly = df.resample("MS", on="date")["total_amount"].sum().reset_index()
+    return monthly.rename(columns={"date": "month"})
