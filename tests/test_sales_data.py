@@ -93,3 +93,22 @@ def test_total_orders_real_data(sales):
 def test_total_orders_counts_each_order_once(tiny):
     # A3 appears on two rows but is one order.
     assert sales_data.total_orders(tiny) == 3
+
+
+# --- Formatting ---
+
+
+def test_format_currency_whole_dollars_with_commas():
+    assert sales_data.format_currency(116500.21) == "$116,500"
+
+
+def test_format_currency_millions():
+    assert sales_data.format_currency(1234567) == "$1,234,567"
+
+
+def test_format_count_small_number():
+    assert sales_data.format_count(482) == "482"
+
+
+def test_format_count_adds_commas():
+    assert sales_data.format_count(1234) == "1,234"
