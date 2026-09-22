@@ -39,3 +39,13 @@ def load_sales_data(path):
 
     df["date"] = pd.to_datetime(df["date"])
     return df
+
+
+def total_sales(df):
+    """Sum of every transaction's total_amount."""
+    return float(df["total_amount"].sum())
+
+
+def total_orders(df):
+    """Number of distinct orders (an order spread over several rows counts once)."""
+    return int(df["order_id"].nunique())

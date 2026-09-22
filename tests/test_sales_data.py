@@ -46,3 +46,50 @@ def test_load_raises_when_column_missing(tmp_path):
     )
     with pytest.raises(ValueError, match="region"):
         sales_data.load_sales_data(bad_csv)
+
+
+# --- A tiny made-up table with totals you can check by hand ---
+#
+#   date        order_id  category   region  total_amount
+#   2024-01-05  A1        Audio      North   10.00
+#   2024-01-20  A2        Wearables  South   50.00
+#   2024-02-10  A3        Audio      South   30.00
+#   2024-02-11  A3        Audio      South    5.00   <- same order as above
+#
+# Total sales 95.00; 3 unique orders; Audio 45 vs Wearables 50;
+# North 10 vs South 85; January 60 vs February 35.
+
+
+@pytest.fixture
+def tiny():
+    return pd.DataFrame(
+        {
+            "date": pd.to_datetime(
+                ["2024-01-05", "2024-01-20", "2024-02-10", "2024-02-11"]
+            ),
+            "order_id": ["A1", "A2", "A3", "A3"],
+            "category": ["Audio", "Wearables", "Audio", "Audio"],
+            "region": ["North", "South", "South", "South"],
+            "total_amount": [10.0, 50.0, 30.0, 5.0],
+        }
+    )
+
+
+# --- Totals ---
+
+
+def test_total_sales_real_data(sales):
+    assert sales_data.total_sales(sales) == pytest.approx(116500.21)
+
+
+def test_total_sales_tiny(tiny):
+    assert sales_data.total_sales(tiny) == pytest.approx(95.0)
+
+
+def test_total_orders_real_data(sales):
+    assert sales_data.total_orders(sales) == 482
+
+
+def test_total_orders_counts_each_order_once(tiny):
+    # A3 appears on two rows but is one order.
+    assert sales_data.total_orders(tiny) == 3
