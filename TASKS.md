@@ -12,13 +12,6 @@ A milestone moves to **Done** only when:
 
 ## To Do
 
-### TASK-4: Sales trend chart
-Add a Plotly line chart of sales over time (FR-2).
-- [ ] Line chart shows sales aggregated by month (or day) across the full 12 months
-- [ ] Axes are labeled and hovering shows exact values
-
-Commit:
-
 ### TASK-5: Category and region breakdowns
 Add side-by-side bar charts for sales by category and by region (FR-3, FR-4).
 - [ ] Category chart shows all 5 categories, sorted highest to lowest, with Electronics on top
@@ -43,6 +36,13 @@ Publish the dashboard at a public, shareable URL (NFR-5).
 Commit:
 
 ## In Progress
+
+### TASK-4: Sales trend chart
+Add a Plotly line chart of sales over time (FR-2).
+- [ ] Line chart shows sales aggregated by month (or day) across the full 12 months
+- [ ] Axes are labeled and hovering shows exact values
+
+Commit:
 
 ## Done
 
