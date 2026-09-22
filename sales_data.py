@@ -20,12 +20,16 @@ REQUIRED_COLUMNS = [
     "total_amount",
 ]
 
+# Columns that must hold a number on every row.
+NUMERIC_COLUMNS = ["quantity", "unit_price", "total_amount"]
+
 
 def load_sales_data(path):
-    """Read the sales CSV, check it has every required column, and parse dates.
+    """Read the sales CSV, check its columns and values, and parse dates.
 
-    Raises FileNotFoundError if the file doesn't exist, and ValueError
-    naming the missing columns if any required column is absent.
+    Raises FileNotFoundError if the file doesn't exist, and ValueError if a
+    required column is absent, the file has no rows, or a numeric column
+    holds anything that isn't a number (text like "$12.99" or a blank/N/A).
     """
     path = Path(path)
     if not path.exists():
@@ -36,6 +40,17 @@ def load_sales_data(path):
     missing = [column for column in REQUIRED_COLUMNS if column not in df.columns]
     if missing:
         raise ValueError(f"Missing columns: {', '.join(missing)}")
+
+    if df.empty:
+        raise ValueError("The sales data file has no rows.")
+
+    # Checked here so bad values fail loudly instead of skewing the totals later.
+    for column in NUMERIC_COLUMNS:
+        numbers = pd.to_numeric(df[column], errors="coerce")
+        bad_rows = int(numbers.isna().sum())
+        if bad_rows:
+            raise ValueError(f"Column {column} has {bad_rows} value(s) that are not numbers.")
+        df[column] = numbers
 
     df["date"] = pd.to_datetime(df["date"])
     return df

@@ -48,6 +48,37 @@ def test_load_raises_when_column_missing(tmp_path):
         sales_data.load_sales_data(bad_csv)
 
 
+HEADER = "date,order_id,product,category,region,quantity,unit_price,total_amount\n"
+
+
+def test_load_numeric_columns_are_numbers(sales):
+    for column in ["quantity", "unit_price", "total_amount"]:
+        assert pd.api.types.is_numeric_dtype(sales[column])
+
+
+def test_load_raises_when_file_has_no_rows(tmp_path):
+    empty_csv = tmp_path / "empty.csv"
+    empty_csv.write_text(HEADER)
+    with pytest.raises(ValueError, match="no rows"):
+        sales_data.load_sales_data(empty_csv)
+
+
+def test_load_raises_when_amount_is_text(tmp_path):
+    # "$12.99" would otherwise turn the whole column into text.
+    bad_csv = tmp_path / "bad.csv"
+    bad_csv.write_text(HEADER + "2024-01-01,A1,Cable,Accessories,North,1,12.99,$12.99\n")
+    with pytest.raises(ValueError, match="total_amount"):
+        sales_data.load_sales_data(bad_csv)
+
+
+def test_load_raises_when_amount_is_missing(tmp_path):
+    # Pandas reads "N/A" as a missing value, which the totals would silently skip.
+    bad_csv = tmp_path / "bad.csv"
+    bad_csv.write_text(HEADER + "2024-01-01,A1,Cable,Accessories,North,1,12.99,N/A\n")
+    with pytest.raises(ValueError, match="total_amount"):
+        sales_data.load_sales_data(bad_csv)
+
+
 # --- A tiny made-up table with totals you can check by hand ---
 #
 #   date        order_id  category   region  total_amount
