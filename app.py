@@ -27,3 +27,8 @@ except (FileNotFoundError, ValueError) as error:
 st.title("ShopSmart Sales Dashboard")
 start, end = df["date"].min(), df["date"].max()
 st.caption(f"Sales performance, {start:%B %Y} – {end:%B %Y}")
+
+# --- KPI cards ---
+sales_card, orders_card = st.columns(2)
+sales_card.metric("Total Sales", sales_data.format_currency(sales_data.total_sales(df)))
+orders_card.metric("Total Orders", sales_data.format_count(sales_data.total_orders(df)))
