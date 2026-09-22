@@ -52,14 +52,6 @@ Commit:
 
 ## In Progress
 
-### TASK-2: Data loading and basic structure
-Load `data/sales-data.csv` with Pandas and organize the app into modular functions.
-- [ ] CSV loads with `date` parsed as a date and numeric columns as numbers
-- [ ] Loaded data has 482 rows, 5 categories, and 4 regions
-- [ ] Data loading is in its own function with basic structure validation
-
-Commit:
-
 ## Done
 
 ### TASK-1: Environment setup and project initialization
@@ -70,3 +62,12 @@ Set up the Python environment, dependencies, and a minimal Streamlit app skeleto
 
 Commit: f2df397
 Notes: Claude's subagent finished and committed this task before the switch to inline execution, so it ran without the requested go-ahead; kept after an inline review. Code unchanged.
+
+### TASK-2: Data loading and basic structure
+Load `data/sales-data.csv` with Pandas and organize the app into modular functions.
+- [x] CSV loads with `date` parsed as a date and numeric columns as numbers
+- [x] Loaded data has 482 rows, 5 categories, and 4 regions
+- [x] Data loading is in its own function with basic structure validation
+
+Commit: 1f4c74c
+Notes: Plan Task 2 (CSV loader + tests, 33e1a53) was committed by Claude's subagent before the switch to inline execution, before TASK-2 was moved to In Progress; kept after re-running its tests. Plan Task 3 done inline with no changes from me.
