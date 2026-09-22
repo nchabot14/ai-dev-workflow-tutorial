@@ -21,14 +21,6 @@ Commit:
 
 ## In Progress
 
-### TASK-6: Testing and refinement
-Verify values against the CSV and polish the dashboard for executive presentation.
-- [ ] All displayed values match calculations from the CSV
-- [ ] Dashboard runs with no errors or warnings and loads within 5 seconds
-- [ ] Layout matches the PRD's dashboard layout and looks professional
-
-Commit:
-
 ## Done
 
 ### TASK-1: Environment setup and project initialization
@@ -74,3 +66,12 @@ Add side-by-side bar charts for sales by category and by region (FR-3, FR-4).
 
 Commit: f51fd79
 Notes: clean
+
+### TASK-6: Testing and refinement
+Verify values against the CSV and polish the dashboard for executive presentation.
+- [x] All displayed values match calculations from the CSV
+- [x] Dashboard runs with no errors or warnings and loads within 5 seconds
+- [x] Layout matches the PRD's dashboard layout and looks professional
+
+Commit: ec8b084
+Notes: Claude first reported the Plan Task 12 server check as passing, but its server never started (port 8501 was held by an older Streamlit, PID 1416) and the check hit that process; caught and redone on port 8599. Claude had no browser, so the visual checks (layout, label overlap, light/dark mode) were left to me; no Step 4 label fix was applied.
