@@ -12,14 +12,14 @@ A milestone moves to **Done** only when:
 
 ## To Do
 
+## In Progress
+
 ### TASK-7: Deploy to Streamlit Community Cloud
 Publish the dashboard at a public, shareable URL (NFR-5).
 - [ ] App is deployed to Streamlit Community Cloud from the GitHub repo
 - [ ] Public URL loads the dashboard and is recorded in this file or the README
 
 Commit:
-
-## In Progress
 
 ## Done
 
